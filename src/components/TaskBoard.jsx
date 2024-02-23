@@ -20,14 +20,20 @@ export default function TaskBoard() {
   //creating state for showing addEditTaskModal
   const [showModal, setShowModal] = useState(false);
 
-  //Add Task Button Function
+  // Add Task Button Function
   function handleAddTask() {
     setShowModal(true);
   }
 
+  function handleAddTasks(newTask) {
+    // receiving newTask data from AddEditTaskModal component
+    setTasks([...tasks, newTask]);
+    setShowModal(false);
+  }
+
   return (
     <section className="mb-20">
-      {showModal && <AddEditTaskModal />}
+      {showModal && <AddEditTaskModal onSave={handleAddTasks} />}
       <div className="container">
         <div className="p-2 flex justify-end">
           <SearchTask />
