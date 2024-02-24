@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unknown-property */
 import { FaStar } from "react-icons/fa";
 
-export default function TaskTableBody({ tasks, onEdit, onDelete }) {
+export default function TaskTableBody({ tasks, onEdit, onDelete, onFav }) {
   return (
     <tbody>
       {tasks.map((task) => (
@@ -11,11 +11,13 @@ export default function TaskTableBody({ tasks, onEdit, onDelete }) {
           key={task.id}
         >
           <td>
-            {task.isFavorite ? (
-              <FaStar color="yellow" />
-            ) : (
-              <FaStar color="gray" />
-            )}
+            <button onClick={() => onFav(task.id)}>
+              {task.isFavorite ? (
+                <FaStar color="yellow" />
+              ) : (
+                <FaStar color="gray" />
+              )}
+            </button>
           </td>
           <td>{task.title}</td>
           <td>
